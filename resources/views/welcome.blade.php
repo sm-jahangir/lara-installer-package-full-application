@@ -53,7 +53,7 @@
                             </nav>
                         @endif
                     </header>
-
+                    <h1>Hello world Welcome page</h1>
                     <main class="mt-6">
                         <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
                             <a
