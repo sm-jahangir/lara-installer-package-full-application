@@ -1,0 +1,19 @@
+{
+  "name": "codersgift/installer",
+  "description": "This package work for laravel installer, for install any application",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+      {
+          "name": "Jahangir Alam",
+          "email": "samraatjahangir@gmail.com"
+      }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+      "psr-4": {
+          "Codersgift\\Installer\\": "src/"
+      }
+  }
+}
