@@ -1,4 +1,4 @@
-@extends('install.app')
+@extends('installer::install.app')
 
 @section('head')
     <title>Maildoll - Organization Setup</title>
@@ -24,13 +24,13 @@
                             <div class="border border-gray-300 rounded-md p-5 text-center">
                                 <div class="w-40 h-40 relative mx-auto rounded-full overflow-hidden shadow-md">
                                     <div class="avatar-upload">
-                                        <div class="avatar-preview bg-gray-200" style="background-image: url({{ maildollLogo() }});">
+                                        <div class="avatar-preview bg-gray-200" style="background-image: url();">
                                         </div>
                                     </div>
                                 </div>
                                 <label for="avatar-upload" class="cursor-pointer mt-4 inline-block text-center">
                                     <span class="block text-blue-500 hover:text-blue-600">@translate(Change Photo)</span>
-                                    <input type="file" id="avatar-upload" name="avatar" accept=".png, .jpg, .jpeg" class="hidden">
+                                    <input type="file" id="avatar-upload" name="logo" accept=".png, .jpg, .jpeg" class="hidden">
                                 </label>
                             </div>
                         </div>
@@ -98,18 +98,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-@endsection
-
-@section('script')
-<script src="{{ filePath('bladejs/install/setupOrg.js') }}"></script>
-<script src="{{ filePath('assets/js/jquery.js') }}"></script>
-<script src="{{ filePath('assets/js/parsley.js') }}"></script>
-<script src="{{ filePath('assets/js/validation.js') }}"></script>
 
 @endsection
 

@@ -23,6 +23,8 @@ Route::group(['middleware' => 'installcheck', 'prefix' => 'install'], function (
         Route::get('setup/admin', [InstallerController::class, 'adminCreate'])->name('admin.create');
         Route::post('setup/admin/store', [InstallerController::class, 'adminStore'])->name('admin.store');
 
+        Route::get('setup/admin/done', [InstallerController::class, 'instalComplete'])->name('frontend.index');
+
 
 
 });

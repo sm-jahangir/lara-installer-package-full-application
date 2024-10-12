@@ -1,70 +1,60 @@
-@extends('../layout/side-menu')
+@extends('installer::install.app')
 
 @section('head')
     <title>Maildoll - Organization Setup</title>
 @endsection
 
 @section('content')
-    <div class="container">
-        <!-- BEGIN: Error Page -->
+    <div class="container mx-auto px-6">
+        <!-- BEGIN: Page Layout -->
         <div class="page flex flex-col lg:flex-row h-screen lg:text-left">
-            <div class="text-white mt-10 lg:mt-0">
-
-                <!-- BEGIN: Company Information -->
-            <div class="intro-y box lg:mt-5">
-                <div class="flex items-center p-5 border-b border-gray-200 dark:border-dark-5">
-                    <h2 class="font-medium text-black text-base mr-auto">@translate(Create Admin User)</h2>
-                </div>
-                <div class="p-5">
-                <form action="{{ route('admin.store') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                 
-                        <div class="col-span-12 xl:col-span-6">
-                            <div class="">
-                                <label class="text-black">@translate(Admin Name) <small>@translate(required)</small> </label>
-                                <input type="text" name="name" class="input text-black  w-full border mt-2" placeholder="@translate(Admin Name)" value="" required>
-                            </div>
-                        </div>
-                        
-                        <div class="col-span-12 xl:col-span-6">
-                            <div class="">
-                                <label class="text-black">@translate(Admin Email) <small>@translate(required)</small> <small>Ex: admin@maildoll.com</small> </label>
-                                <input type="email" name="email" class="input text-black  w-full border mt-2" placeholder="Admin Email" value="" data-parsley-type="email" data-parsley-required>
-                            </div>
-                        </div>
-
-                        <div class="col-span-12 xl:col-span-6">
-                            <div class="">
-                                <label class="text-black">@translate(Admin Password) <small>@translate(required)</small> </label>
-                                <input type="password" name="password" class="input text-black  w-full border mt-2" placeholder="Admin Password" value="" data-parsley-type="password" data-parsley-required>
-                            </div>
-                            </div>
-                        
+            <div class="w-full lg:w-8/12 mx-auto">
+                <!-- BEGIN: Admin Information -->
+                <div class="bg-white shadow-lg rounded-lg p-6 mt-10 lg:mt-0">
+                    <div class="border-b pb-4 mb-6">
+                        <h2 class="text-2xl font-semibold text-gray-800">@translate(Create Admin User)</h2>
                     </div>
+                    <form action="{{ route('admin.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+
+                        <!-- Admin Name -->
+                        <div class="grid grid-cols-1 gap-6 mb-4">
+                            <div>
+                                <label class="block text-gray-700 text-sm font-semibold mb-2">
+                                    @translate(Admin Name) <small class="text-red-500">@translate(required)</small>
+                                </label>
+                                <input type="text" name="name" class="input w-full border-gray-300 rounded-md p-3 mt-1 focus:border-blue-500 focus:ring focus:ring-blue-200" placeholder="@translate(Admin Name)" value="" required>
+                            </div>
+
+                            <!-- Admin Email -->
+                            <div>
+                                <label class="block text-gray-700 text-sm font-semibold mb-2">
+                                    @translate(Admin Email) <small class="text-red-500">@translate(required)</small>
+                                    <span class="text-gray-500 ml-1">Ex: admin@maildoll.com</span>
+                                </label>
+                                <input type="email" name="email" class="input w-full border-gray-300 rounded-md p-3 mt-1 focus:border-blue-500 focus:ring focus:ring-blue-200" placeholder="Admin Email" value="" required>
+                            </div>
+
+                            <!-- Admin Password -->
+                            <div>
+                                <label class="block text-gray-700 text-sm font-semibold mb-2">
+                                    @translate(Admin Password) <small class="text-red-500">@translate(required)</small>
+                                </label>
+                                <input type="password" name="password" class="input w-full border-gray-300 rounded-md p-3 mt-1 focus:border-blue-500 focus:ring focus:ring-blue-200" placeholder="Admin Password" required>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="flex justify-end mt-6">
+                            <button type="submit" class="w-full lg:w-auto px-5 py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition focus:outline-none focus:ring focus:ring-blue-200">
+                                @translate(Save and Next Step)
+                            </button>
+                        </div>
+                    </form>
                 </div>
-            </div>
-            <!-- END: Company Information -->
-            
-            <div class="flex justify-end mt-4">
-                <button type="submit" 
-                        class="button w-full inline-block text-xl px-5 py-4 mr-1 mb-2 border text-white dark:bg-dark-5 dark:text-white-300">
-                        Save and Next Step
-                </button>
-            </div>
-
-            </form>
-
+                <!-- END: Admin Information -->
             </div>
         </div>
-        <!-- END: Error Page -->
+        <!-- END: Page Layout -->
     </div>
 @endsection
-
-@section('script')
-
-<script src="{{ filePath('assets/js/jquery.js') }}"></script>
-<script src="{{ filePath('assets/js/parsley.js') }}"></script>
-<script src="{{ filePath('assets/js/validation.js') }}"></script>
-
-@endsection
-
