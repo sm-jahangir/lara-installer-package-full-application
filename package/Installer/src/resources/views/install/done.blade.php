@@ -1,4 +1,5 @@
-@extends('../layout/side-menu')
+@extends('installer::install.app')
+
 
 @section('head')
     <title>Maildoll - Email & SMS Marketing SaaS Application</title>

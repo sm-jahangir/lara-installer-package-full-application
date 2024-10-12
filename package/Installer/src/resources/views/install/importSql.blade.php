@@ -43,7 +43,7 @@
                         <div class="card-body">
                             <h2 class="text-4xl font-bold card-title">Maildoll - Email & SMS Marketing SaaS Application</h2>
 
-                        @if($message = Session::get('success'))
+                        @if(isset($message) && $message === 'success')
 
                             <div class="hero h-full bg-base-200 rounded-box">
                                 <div class="text-center hero-content">
@@ -91,7 +91,7 @@
 
                         @endif
 
-                        @if($message = Session::get('wrong'))
+                        @if(isset($message) && $message === 'wrong')
 
                             <h2 class="text-center">Check the Database connection</h2>
                             <a href="{{route('create')}}" class="btn btn-outline">Go to the Database Setup</a>

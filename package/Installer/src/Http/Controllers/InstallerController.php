@@ -2,6 +2,7 @@
 
 namespace Codersgift\Installer\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
@@ -45,23 +46,33 @@ class InstallerController extends Controller
         }
         Artisan::call('optimize:clear');
 
-        return redirect()->route('check.db');
+        return redirect()->route('sql.setup');
     }
-    // checkDbConnection
-    public function checkDbConnection()
-    {
-        try {
-            DB::connection()->getPdo();
-            // Redirect to import SQL page with success message
-            return redirect()->route('sql.setup')->with('success', 'Your database connection done successfully');
-        } catch (\Exception $e) {
-            // Redirect to import SQL page with error message
-            return redirect()->route('sql.setup')->with('wrong', 'Could not connect to the database. Please check your configuration');
-        }
-    }
+
     public function importSql()
     {
-        return view('installer::install.importSql');
+        try {
+            // Attempt to connect to the database
+            DB::connection()->getPdo();
+            
+            // If successful, pass a success message to the view
+            return view('installer::install.importSql', ['message' => 'success', 'text' => 'Your database connection done successfully']);
+        } catch (\Exception $e) {
+            // If an error occurs, pass an error message to the view
+            return view('installer::install.importSql', ['message' => 'wrong', 'text' => 'Could not connect to the database. Please check your configuration']);
+        }
     }
+        /*import here demo data with instructor register form*/
+    public function importDummySql()
+    {
+        Artisan::call('migrate --seed');
+
+        overWriteEnvFile('APP_INSTALL', 'YES');
+        $se = Str::before(env('APP_URL'), '/public');
+        overWriteEnvFile('APP_URL', $se);
+
+        return view('installer::install.done');
+    }
+    
 
 }
