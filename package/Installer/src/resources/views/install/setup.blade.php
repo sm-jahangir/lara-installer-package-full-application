@@ -1,4 +1,4 @@
-@extends('install.app')
+@extends('installer::install.app')
 
 @section('content')
 
@@ -114,39 +114,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                @if (saas())
-                                    <div class="w-full lg:w-6/12 px-4">
-                                        <div class="relative w-full mb-3">
-                                            <div class="p-10 card bg-base-200">
-                                                <div class="form-control">
-                                                    <label class="label">
-                                                    <span class="label-text">Database Prefix</span>
-                                                    </label> 
-                                                    <input type="hidden" name="types[]" value="DB_PREFIX">
-                                                    <input type="text" name="DB_PREFIX" placeholder="Database Prefix" value="{{ old('DB_PREFIX') }}" required class="input" required>
-                                                    <small>Ex: maildollsaas_</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="w-full lg:w-6/12 px-4">
-                                        <div class="relative w-full mb-3">
-                                            <div class="p-10 card bg-base-200">
-                                                <div class="form-control">
-                                                    <label class="label">
-                                                    <span class="label-text">You Domain</span>
-                                                    </label> 
-                                                    <input type="hidden" name="types[]" value="YOUR_DOMAIN">
-                                                    <input type="text" name="YOUR_DOMAIN" placeholder="Your Domain" value="{{ old('YOUR_DOMAIN') }}" required class="input" required>
-                                                    <small>Ex: maildollsaas.com</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-
-                                
                             
                             </div>
                     

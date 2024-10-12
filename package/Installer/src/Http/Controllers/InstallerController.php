@@ -2,10 +2,11 @@
 
 namespace Codersgift\Installer\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Request;
 
 
 
@@ -31,4 +32,36 @@ class InstallerController extends Controller
 
         return view('installer::install.permission', compact('permission'));
     }
+        // create
+    public function create()
+    {
+        return view('installer::install.setup');
+    }
+    public function dbStore(Request $request)
+    {
+        foreach ($request->types as $type) {
+            //here the get database key or data for env file
+            overWriteEnvFile($type, $request[$type]);
+        }
+        Artisan::call('optimize:clear');
+
+        return redirect()->route('check.db');
+    }
+    // checkDbConnection
+    public function checkDbConnection()
+    {
+        try {
+            DB::connection()->getPdo();
+            // Redirect to import SQL page with success message
+            return redirect()->route('sql.setup')->with('success', 'Your database connection done successfully');
+        } catch (\Exception $e) {
+            // Redirect to import SQL page with error message
+            return redirect()->route('sql.setup')->with('wrong', 'Could not connect to the database. Please check your configuration');
+        }
+    }
+    public function importSql()
+    {
+        return view('installer::install.importSql');
+    }
+
 }

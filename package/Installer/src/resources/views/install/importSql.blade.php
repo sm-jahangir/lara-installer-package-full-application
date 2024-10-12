@@ -1,4 +1,4 @@
-@extends('install.app')
+@extends('installer::install.app')
 
 @section('content')
 
